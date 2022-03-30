@@ -1,211 +1,7 @@
 from tkinter import *
 from tkinter import messagebox as mb
-
-#To do:
-#Make clear label because when new string placed, the old one can be seen too.
-
-
-#---------------------------------------------------------------------------------------#
-#-----------------------------------MAIN WINDOW-----------------------------------------#
-#---------------------------------------------------------------------------------------#
-root = Tk()
-root.geometry("600x600")
-root.title("Some calculators for hardware boys and girls")
-
-
-#Wire_calculate = Button(voltage_divider_window, text="Press to calculate Vout value", command=voltage_divider_calc_Vout)
-#Wire_calculate.grid(row=10, column=1)
-
-
-#------------------------------------FUNCTIONS------------------------------------------#
-
-        #-------------------LED RESISTOR CALCULATION-------------------#
-
-def led_resistor():
-    global led_window
-    global counter
-    global led_calc_result_lab
-    global led_calc_discr_label
-
-    try:
-        float(Uin_input.get())
-        float(U_led_input.get())
-        float(I_led_input.get())
-        pass
-    except ValueError:
-        mb.showerror("Error", "Enter digits, boy!")
-    Uin = float(Uin_input.get())
-    U_led = float(U_led_input.get())
-    I_led = float(I_led_input.get())
-
-    R = (Uin - U_led)/(I_led*0.001)
-    R_result = R
-
-
-
-    led_calc_result_lab = Label(led_window, text="Take about " + str(int(R_result)) + " Ohm")
-    led_calc_result_lab.grid(row=counter, column=2)
-    led_calc_discr_label = Label(led_window, text= "Vin = " + str(Uin) + "V" + " | U_led = "
-                                                   + str(U_led)+ "V" + " | I_led = " + str(I_led)+ "mA")
-    led_calc_discr_label.grid(row=counter, column=0, columnspan=2)
-    if (counter == 20):
-        counter = 3
-    counter = counter + 1
-
-def voltage_divider_calc_R1():
-    global voltage_divider_window
-    global counter_vd
-    global R1_result_lab
-    global voltage_dividerR1_result
-    global voltage_dividerR2_result
-    global voltage_dividerVout_result
-
-    try:
-        float(R2_input.get())
-        float(Vout_input.get())
-        float(Vin_input.get())
-        pass
-    except ValueError:
-        mb.showerror("Error", "Enter digits, boy!")
-
-    R2 = float(R2_input.get())
-    Vout = float(Vout_input.get())
-    Vin = float(Vin_input.get())
-
-    R1 = ((Vin - Vout)*R2)/Vout
-    R1_result = R1
-
-    voltage_dividerR1_result_lab = Label(voltage_divider_window, text="Take value of R1 about " + str(int(R1_result)) + " Ohm",fg='darkblue')
-    voltage_dividerR1_result_lab.grid(row=counter_vd, column=2, columnspan=2)
-    voltage_dividerR1_discr_label = Label(voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
-                                                  + str(Vout) + "V" + " | R2 = " + str(R2) + "Ohm")
-    voltage_dividerR1_discr_label.grid(row=counter_vd, column=0, columnspan=2)
-    voltage_dividerR1_result = Label(voltage_divider_window, text=str(int(R1_result)) + " Ohm" ,fg='darkblue')
-    voltage_dividerR1_result.grid(row=5, column=1, sticky="e")
-
-    if ((((Vin**2)/R1) >= 0.0625) or (((Vin**2)/R2) >= 0.0625)):
-        attention_message = Label(voltage_divider_window, text="Attention! Take care of resistor's power!", fg='red')
-        attention_message.grid(row=counter_vd, column=4, columnspan=5)
-    if (Vin < Vout):
-        mb.showerror("Error", "Input Voltage must be higher than output Voltage!")
-
-    if (counter_vd == 25):
-        counter_vd = 11
-    counter_vd = counter_vd + 1
-
-
-
-def voltage_divider_calc_R2():
-    global voltage_divider_window
-    global counter_vd
-    global R2_result_lab
-    global voltage_dividerR1_result
-    global voltage_dividerR2_result
-    global voltage_dividerVout_result
-
-    try:
-        float(R1_input.get())
-        float(Vout_input.get())
-        float(Vin_input.get())
-        pass
-    except ValueError:
-        mb.showerror("Error", "Enter digits, boy!")
-
-    R1 = float(R1_input.get())
-    Vout = float(Vout_input.get())
-    Vin = float(Vin_input.get())
-
-    R2 = (R1 * Vout)/(Vin - Vout)
-    R2_result = R2
-
-    voltage_dividerR2_result_lab = Label(voltage_divider_window,
-                                         text="Take value of R2 about " + str(int(R2_result)) + " Ohm", fg='darkblue')
-    voltage_dividerR2_result_lab.grid(row=counter_vd, column=2, columnspan=2)
-    voltage_dividerR2_discr_label = Label(voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
-                                                                       + str(Vout) + "V" + " | R1 = " + str(R1) + "Ohm")
-    voltage_dividerR2_discr_label.grid(row=counter_vd, column=0, columnspan=2)
-    voltage_dividerR2_result = Label(voltage_divider_window, text=str(int(R2_result)) + " Ohm", fg='darkblue')
-    voltage_dividerR2_result.grid(row=6, column=1, sticky="e")  #Result of calculation.
-
-    if (counter_vd == 20):
-        counter_vd = 11
-    counter_vd = counter_vd + 1
-
-def voltage_divider_calc_Vout():
-    global voltage_divider_window
-    global counter_vd
-    global Vout_result_lab
-    global voltage_dividerR1_result
-    global voltage_dividerR2_result
-    global voltage_dividerVout_result
-
-    try:
-        float(R1_input.get())
-        float(R2_input.get())
-        float(Vin_input.get())
-        pass
-    except ValueError:
-        mb.showerror("Error", "Enter digits, boy!")
-
-    R1 = float(R1_input.get())
-    R2 = float(R2_input.get())
-    Vin = float(Vin_input.get())
-
-    Vout = (R2 * Vin) / (R1 + R2)
-    Vout_result = Vout
-
-    voltage_dividerVout_result_lab = Label(voltage_divider_window,
-                                         text="Vout = " + str(float(round((Vout_result),2))) + " Volts", fg='darkblue')
-    voltage_dividerVout_result_lab.grid(row=counter_vd, column=2, columnspan=2)
-    voltage_dividerVout_discr_label = Label(voltage_divider_window, text="Output voltage result with entered values are:")
-    voltage_dividerVout_discr_label.grid(row=counter_vd, column=0, columnspan=2)
-    voltage_dividerVout_result = Label(voltage_divider_window, text=str(int(Vout_result)) + " Volts", fg='darkblue')
-    voltage_dividerVout_result.grid(row=6, column=4, sticky="w")
-
-    if (counter_vd == 15):
-        counter_vd = 11
-    counter_vd = counter_vd + 1
-
-
-        #-----------------MAX WIRE CURRENT CALCULATION-----------------#
-
-#def wire_current():
-
-
-def infojokes():
-    root = Tk()
-    root.geometry("600x300")
-    root.title("Some jokes for your good mood")
-    Infotext = Label(root, text="Earth girls are easy. It is the first joke. They are not easy in real.")
-    Infotext.grid(row=0, column=0)
-    Infotext = Label(root, text="Do you have a dream? Maybe you want to be a landowner in a red jumpsuit,\n"
-                                " with stick out from huge pockets, like a clown's, buttles of wine. And in\n"
-                                " case, if you have a sip from this bottle didn't mop the running drop, it's\n"
-                                " nothing scary, it doesn't see on the red costume. And nobody said to rich \n"
-                                "landowner - Hey, mutherfucker, there is a red spot on your costume, shame on you!\n"
-                                " To be in durty clothes in public place - what's wrong with you? Horrible, horrible,\n"
-                                " then landowner. And this passer-by with a sense of accomplishment he goes home\n"
-                                " where he is waited by wife and children. And, sitting on the coach and turning\n"
-                                " on the TV, he will think - I would like to have that kombinezon. But I never would\n"
-                                " getting dirty in wine. If I would have that kombinezon and if I would be landowner,\n"
-                                " I would behave myself another way. But he didn't landowner, like he didn't communist\n"
-                                " or baptist. So, if on his clothes would finded a drop of wine or something else, he \n"
-                                "would perceivable as bedragged in durty clothes. Landowner could let himself more.\n"
-                                " He can wear huge wide trousers with paintings of cosmic ships and it would considered,\n"
-                                " that it is excentric and even when he was find with that bottle of wine in puddle\n"
-                                " of red liquid on the expensive floor in the bathroom, people will smile and say:\n"
-                                " Excentric!\n")
-    Infotext.grid(row=1, rowspan=20, column=0, sticky="e")
-
-def infomessage():
-    root = Tk()
-    root.geometry("600x300")
-    root.title("Information")
-    Infotext = Label(root, text="This program was developed because of low self-assessment.")
-    Infotext.grid(row=0, column=0)
-    Infotext = Label(root, text="Only my best friend Kostyan belived in me. But sometimes he said that I am stupid")
-    Infotext.grid(row=1, column=0)
-
+#from RUI_func import *
+import RUI_func
 #---------------------------------------------------------------------------------------#
 #--------------------------THE LED CALCULATOR THINGS------------------------------------#
 #---------------------------------------------------------------------------------------#
@@ -217,11 +13,11 @@ def led_calc():
     led_window.title("Led Resistor calculator basic")
 
     global counter
-    global Uin_input
     global U_led_input
     global I_led_input
     global led_calc_result_lab
     global led_calc_discr_label
+    global Uin_input
 
 #Voltage insert string
     Uin_input_lab = Label(led_window, text="Enter input voltage in Volts")
@@ -247,7 +43,7 @@ def led_calc():
     led_calc_discr_label = Label(led_window)
 
 #Button to calculate resistor value
-    R_calculate = Button(led_window, text="Press to calculate R value", command = led_resistor)
+    R_calculate = Button(led_window, text="Press to calculate R value", command = RUI_func.led_resistor)
     R_calculate.grid(row=3, column=1)
 
 
@@ -334,13 +130,13 @@ def voltage_divider():
 
     # Buttons to calculate
 
-    R1_calculate = Button(voltage_divider_window, text="Press to calculate R1 value", command=voltage_divider_calc_R1)
+    R1_calculate = Button(voltage_divider_window, text="Press to calculate R1 value", command=RUI_func.voltage_divider_calc_R1)
     R1_calculate.grid(row=8, column=1)
 
-    R2_calculate = Button(voltage_divider_window, text="Press to calculate R2 value", command=voltage_divider_calc_R2)
+    R2_calculate = Button(voltage_divider_window, text="Press to calculate R2 value", command=RUI_func.voltage_divider_calc_R2)
     R2_calculate.grid(row=9, column=1)
 
-    V_calculate = Button(voltage_divider_window, text="Press to calculate Vout value", command=voltage_divider_calc_Vout)
+    V_calculate = Button(voltage_divider_window, text="Press to calculate Vout value", command=RUI_func.voltage_divider_calc_Vout)
     V_calculate.grid(row=10, column=1)
 
     Clear_button = Button(voltage_divider_window, text="Press to clear", command=lambda: [
@@ -503,34 +299,28 @@ def voltage_divider():
 
 def wire_calc():
     global wire_window
+    global D_input
+
     wire_window = Tk()
     wire_window.geometry("600x600")
     wire_window.title("Max currunt throw wire calculator")
 
-def main_menu_buttons():
-    LED_calculate = Button(root, text="LED resistor calculator", command=led_calc)
-    LED_calculate.grid(row=1, column=1)
+    canvas_wire = Canvas(wire_window, width=500, height=500)
+    #canvas_wire.create_arc(250,250,350,150)
+    canvas_wire.create_line(400, 250, 400, 150)
+    canvas_wire.create_line(300, 250, 400, 250)
+    canvas_wire.create_line(300, 150, 400, 150)
+    canvas_wire.create_line(400, 150, 410, 170)
+    canvas_wire.create_line(400, 150, 390, 170)
+    canvas_wire.create_line(400, 250, 410, 230)
+    canvas_wire.create_line(400, 250, 390, 230)
+    canvas_wire.create_oval(250, 250, 350, 150)
+    canvas_wire.create_text(420, 200, fill="black", font="Times 12 italic bold", text="D = ")
+    canvas_wire.grid(row=2, column=2)
 
-    VolDiv_calculate = Button(root, text="Voltage divider calculator", command=voltage_divider)
-    VolDiv_calculate.grid(row=2, column=1)
-#---------------------------------------------------------#
-#---------------------------------------------------------#
-#---------------------------------------------------------#
+    D_input = Entry(wire_window, width=5)
+    D_input.grid(row=2, column=3, sticky="w")
 
-topmenu = Menu(root)
-calcmenu = Menu(topmenu, tearoff=0)
-calcmenu.add_command(label="LED resistor", command=led_calc)
-calcmenu.add_command(label="Voltage divider", command=voltage_divider)
-calcmenu.add_command(label="Max current throw wire", command=wire_calc)
-topmenu.add_cascade(label="Calculators", menu=calcmenu)
+    D_calculate = Button(wire_window, text="Press to calculate max current through wire", command=wire_d)
+    D_calculate.grid(row=3, column=1)
 
-infomenu = Menu(topmenu, tearoff=0)
-infomenu.add_command(label="Some jokes", command=infojokes)
-infomenu.add_command(label="Info", command=infomessage)
-topmenu.add_cascade(label="Info", menu=infomenu)
-
-root.config(menu=topmenu)
-
-
-
-root.mainloop()
