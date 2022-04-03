@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import messagebox as mb
 #from Calc_interface import *
 import Calc_interface
+counter_vd = 11
+counter = 4
 
 #------------------------------------FUNCTIONS------------------------------------------#
 
@@ -9,9 +11,9 @@ import Calc_interface
 
 def led_resistor():
     global led_window
-    counter = Calc_interface.counter
     global led_calc_result_lab
     global led_calc_discr_label
+    global counter
 
     try:
         float(Calc_interface.Uin_input.get())
@@ -64,16 +66,16 @@ def voltage_divider_calc_R1():
     R1 = ((Vin - Vout)*R2)/Vout
     R1_result = R1
 
-    voltage_dividerR1_result_lab = Label(voltage_divider_window, text="Take value of R1 about " + str(int(R1_result)) + " Ohm",fg='darkblue')
+    voltage_dividerR1_result_lab = Label(Calc_interface.voltage_divider_window, text="Take value of R1 about " + str(int(R1_result)) + " Ohm",fg='darkblue')
     voltage_dividerR1_result_lab.grid(row=counter_vd, column=2, columnspan=2)
-    voltage_dividerR1_discr_label = Label(voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
+    voltage_dividerR1_discr_label = Label(Calc_interface.voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
                                                   + str(Vout) + "V" + " | R2 = " + str(R2) + "Ohm")
     voltage_dividerR1_discr_label.grid(row=counter_vd, column=0, columnspan=2)
-    voltage_dividerR1_result = Label(voltage_divider_window, text=str(int(R1_result)) + " Ohm" ,fg='darkblue')
+    voltage_dividerR1_result = Label(Calc_interface.voltage_divider_window, text=str(int(R1_result)) + " Ohm" ,fg='darkblue')
     voltage_dividerR1_result.grid(row=5, column=1, sticky="e")
 
     if ((((Vin**2)/R1) >= 0.0625) or (((Vin**2)/R2) >= 0.0625)):
-        attention_message = Label(voltage_divider_window, text="Attention! Take care of resistor's power!", fg='red')
+        attention_message = Label(Calc_interface.voltage_divider_window, text="Attention! Take care of resistor's power!", fg='red')
         attention_message.grid(row=counter_vd, column=4, columnspan=5)
     if (Vin < Vout):
         mb.showerror("Error", "Input Voltage must be higher than output Voltage!")
@@ -107,13 +109,13 @@ def voltage_divider_calc_R2():
     R2 = (R1 * Vout)/(Vin - Vout)
     R2_result = R2
 
-    voltage_dividerR2_result_lab = Label(voltage_divider_window,
+    voltage_dividerR2_result_lab = Label(Calc_interface.voltage_divider_window,
                                          text="Take value of R2 about " + str(int(R2_result)) + " Ohm", fg='darkblue')
     voltage_dividerR2_result_lab.grid(row=counter_vd, column=2, columnspan=2)
-    voltage_dividerR2_discr_label = Label(voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
+    voltage_dividerR2_discr_label = Label(Calc_interface.voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
                                                                        + str(Vout) + "V" + " | R1 = " + str(R1) + "Ohm")
     voltage_dividerR2_discr_label.grid(row=counter_vd, column=0, columnspan=2)
-    voltage_dividerR2_result = Label(voltage_divider_window, text=str(int(R2_result)) + " Ohm", fg='darkblue')
+    voltage_dividerR2_result = Label(Calc_interface.voltage_divider_window, text=str(int(R2_result)) + " Ohm", fg='darkblue')
     voltage_dividerR2_result.grid(row=6, column=1, sticky="e")  #Result of calculation.
 
     if (counter_vd == 20):
@@ -143,12 +145,12 @@ def voltage_divider_calc_Vout():
     Vout = (R2 * Vin) / (R1 + R2)
     Vout_result = Vout
 
-    voltage_dividerVout_result_lab = Label(voltage_divider_window,
+    voltage_dividerVout_result_lab = Label(Calc_interface.voltage_divider_window,
                                          text="Vout = " + str(float(round((Vout_result),2))) + " Volts", fg='darkblue')
     voltage_dividerVout_result_lab.grid(row=counter_vd, column=2, columnspan=2)
-    voltage_dividerVout_discr_label = Label(voltage_divider_window, text="Output voltage result with entered values are:")
+    voltage_dividerVout_discr_label = Label(Calc_interface.voltage_divider_window, text="Output voltage result with entered values are:")
     voltage_dividerVout_discr_label.grid(row=counter_vd, column=0, columnspan=2)
-    voltage_dividerVout_result = Label(voltage_divider_window, text=str(int(Vout_result)) + " Volts", fg='darkblue')
+    voltage_dividerVout_result = Label(Calc_interface.voltage_divider_window, text=str(int(Vout_result)) + " Volts", fg='darkblue')
     voltage_dividerVout_result.grid(row=6, column=4, sticky="w")
 
     if (counter_vd == 15):

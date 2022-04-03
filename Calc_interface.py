@@ -1,10 +1,21 @@
 from tkinter import *
 from tkinter import messagebox as mb
-#from RUI_func import *
 import RUI_func
+
 #---------------------------------------------------------------------------------------#
 #--------------------------THE LED CALCULATOR THINGS------------------------------------#
 #---------------------------------------------------------------------------------------#
+def button_clear():
+    global Vin_input
+    global R1_input
+    global R2_input
+    global Vout_input
+    Vin_input.delete(0, END)
+    R1_input.delete(0, END)
+    R2_input.delete(0, END)
+    Vout_input.delete(0, END)
+
+
 
 def led_calc():
     global led_window
@@ -36,8 +47,6 @@ def led_calc():
     I_led_input_lab.grid(row=2, column=0)
     I_led_input = Entry(led_window, width=20)
     I_led_input.grid(row=2, column=1)
-
-    counter = 4
 
     led_calc_result_lab = Label(led_window)
     led_calc_discr_label = Label(led_window)
@@ -139,9 +148,15 @@ def voltage_divider():
     V_calculate = Button(voltage_divider_window, text="Press to calculate Vout value", command=RUI_func.voltage_divider_calc_Vout)
     V_calculate.grid(row=10, column=1)
 
-    Clear_button = Button(voltage_divider_window, text="Press to clear", command=lambda: [
-                                                                        voltage_divider_window.update()
-                                                                                        ])
+
+
+
+    #Clear_button = Button(voltage_divider_window, text="Press to clear", command=lambda: [
+    #                                                                    voltage_divider_window.update()
+    #                                                                                    ])
+
+    Clear_button = Button(voltage_divider_window, text="Press to clear", command=button_clear)
+
     Clear_button.grid(row=8, column=2)
 
     #Voltage_divider_result_clear = Button(voltage_divider_window, text="Press to clear all results", command=voltage_divider_clear)
@@ -149,15 +164,12 @@ def voltage_divider():
 
     # Buttons to choose calculator
 
-    voltage_dividerR1_result = Label(voltage_divider_window, text="Just a crutch", fg='darkblue')
-    voltage_dividerR2_result = Label(voltage_divider_window, text="Just a crutch", fg='darkblue')
-    voltage_dividerVout_result = Label(voltage_divider_window, text="Just a crutch", fg='darkblue')
+    #voltage_dividerR1_result = Label(voltage_divider_window, text="Just a crutch", fg='darkblue')
+    #voltage_dividerR2_result = Label(voltage_divider_window, text="Just a crutch", fg='darkblue')
+    #voltage_dividerVout_result = Label(voltage_divider_window, text="Just a crutch", fg='darkblue')
 
     Show_R1 = Button(voltage_divider_window, text="R1 CALCULATOR", bg='blue', fg='white',
                                                         command=lambda: [
-                                                        voltage_dividerR1_result.destroy(),
-                                                        voltage_dividerR2_result.destroy(),
-                                                        voltage_dividerVout_result.destroy(),
                                                         R1_lab.grid_remove(), R1_input.grid_remove(),
                                                         R2_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
@@ -171,9 +183,6 @@ def voltage_divider():
 
     Show_R2 = Button(voltage_divider_window, text="R2 CALCULATOR", bg='blue', fg='white',
                                                         command=lambda: [
-                                                        voltage_dividerR1_result.destroy(),
-                                                        voltage_dividerR2_result.destroy(),
-                                                        voltage_dividerVout_result.destroy(),
                                                         R2_lab.grid_remove(), R2_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
@@ -187,9 +196,6 @@ def voltage_divider():
 
     Show_Vout = Button(voltage_divider_window, text="Vout CALCULATOR", bg='blue', fg='white',
                                                         command=lambda: [
-                                                        voltage_dividerR1_result.destroy(),
-                                                        voltage_dividerR2_result.destroy(),
-                                                        voltage_dividerVout_result.destroy(),
                                                         Vout_lab.grid_remove(), Vout_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         R2_calculate.grid_remove(),

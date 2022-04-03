@@ -4,9 +4,6 @@ import RUI_func
 import Calc_interface
 
 
-#To do:
-#Make clear label because when new string placed, the old one can be seen too.
-
 #---------------------------------------------------------------------------------------#
 #-----------------------------------MAIN WINDOW-----------------------------------------#
 #---------------------------------------------------------------------------------------#
@@ -14,11 +11,7 @@ root = Tk()
 root.geometry("600x600")
 root.title("Some calculators for hardware boys and girls")
 
-
-#Wire_calculate = Button(voltage_divider_window, text="Press to calculate Vout value", command=voltage_divider_calc_Vout)
-#Wire_calculate.grid(row=10, column=1)
-
-
+#Define main menu buttons
 def main_menu_buttons():
     LED_calculate = Button(root, text="LED resistor calculator", font="30", command=Calc_interface.led_calc)
     LED_calculate.grid(row=1, column=1)
@@ -30,11 +23,6 @@ def main_menu_buttons():
     Wire_calculate.grid(row=5, column=1)
 
 main_menu_buttons()
-
-
-#---------------------------------------------------------#
-#---------------------------------------------------------#
-#---------------------------------------------------------#
 
 topmenu = Menu(root)
 calcmenu = Menu(topmenu, tearoff=0)
