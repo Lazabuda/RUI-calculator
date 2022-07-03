@@ -185,7 +185,7 @@ def voltage_divider():
                                                         R1_lab.grid_remove(), R1_input.grid_remove(),
                                                         R2_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
-                                                        button_Show_R1,
+                                                        button_Show_R1(),
                                                         #RUI_func.voltage_dividerR2_result.grid_remove(),
                                                         R1_calculate.grid(),
                                                         R2_lab.grid(), R2_input.grid(),
@@ -204,7 +204,7 @@ def voltage_divider():
                                                         R2_lab.grid_remove(), R2_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
-                                                        button_Show_R2,
+                                                        button_Show_R2(),
                                                         #RUI_func.voltage_dividerR1_result.grid_remove(),
                                                         R2_calculate.grid(),
                                                         R1_lab.grid(), R1_input.grid(),
@@ -219,7 +219,7 @@ def voltage_divider():
                                                         Vout_lab.grid_remove(), Vout_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         R2_calculate.grid_remove(),
-                                                        button_Show_Vout,
+                                                        button_Show_Vout(),
                                                         V_calculate.grid(),
                                                         R1_lab.grid(), R1_input.grid(),
                                                         R2_lab.grid(), R2_input.grid(),
@@ -321,39 +321,43 @@ def voltage_divider():
 
 def button_Show_R1():
 
-    if ((RUI_func.voltage_dividerR1_result) == True):
+    if (RUI_func.voltage_dividerR1_result):
         RUI_func.voltage_dividerR1_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
-    if ((RUI_func.voltage_dividerR2_result) == True):
+        #mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
+    if (RUI_func.voltage_dividerR2_result):
         RUI_func.voltage_dividerR2_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
-    if ((RUI_func.voltage_dividerVout_result) == True):
+        #mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
+    if (RUI_func.voltage_dividerVout_result):
         RUI_func.voltage_dividerVout_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+        #mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+    #else:
+        #mb.showerror("KAKAYA-TO HUINYA")
 
 def button_Show_R2():
-
-    if ((RUI_func.voltage_dividerR1_result) == True):
+    if (RUI_func.voltage_dividerR1_result):
         RUI_func.voltage_dividerR1_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
-    if ((RUI_func.voltage_dividerR2_result) == True):
+        #mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
+    if (RUI_func.voltage_dividerR2_result):
         RUI_func.voltage_dividerR2_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
-    if ((RUI_func.voltage_dividerVout_result) == True):
+        #mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
+    if (RUI_func.voltage_dividerVout_result):
         RUI_func.voltage_dividerVout_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+        #mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+    #else:
+        #mb.showerror("KAKAYA-TO HUINYA")
 
 def button_Show_Vout():
-
-    if ((RUI_func.voltage_dividerR1_result) == True):
+    if (RUI_func.voltage_dividerR1_result):
         RUI_func.voltage_dividerR1_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
-    if ((RUI_func.voltage_dividerR2_result) == True):
+        #mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
+    if (RUI_func.voltage_dividerR2_result):
         RUI_func.voltage_dividerR2_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
-    if ((RUI_func.voltage_dividerVout_result) == True):
+        #mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
+    if (RUI_func.voltage_dividerVout_result):
         RUI_func.voltage_dividerVout_result.grid_remove()
-        mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+        #mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+    #else:
+        #mb.showerror("KAKAYA-TO HUINYA")
 
 #---------------------------------------------------------------------------------------#
 #------------------------------THE MAX CURRENT THROW WIRE CALCULATOR--------------------#
