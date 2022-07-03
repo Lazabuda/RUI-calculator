@@ -53,7 +53,7 @@ def led_calc():
 
 #Button to calculate resistor value
     R_calculate = Button(led_window, text="Press to calculate R value", command = RUI_func.led_resistor)
-    R_calculate.grid(row=3, column=1)
+    R_calculate.grid(row=4, column=1)
 
 
 
@@ -83,6 +83,16 @@ def led_calc():
     canvas_resistor.create_line(50,0,50,50)
     canvas_resistor.create_polygon(40,10, 60,10, 60,40, 40,40)
     canvas_resistor.grid(row=1, column=2)
+
+# Draw Ground sumbol
+    canvas_ground = Canvas(led_window, width=130, height=50)
+    canvas_ground.create_line(50, 0, 50, 25)
+    canvas_ground.create_line(30, 25, 70, 25)
+    canvas_ground.create_line(35, 30, 65, 30)
+    canvas_ground.create_line(40, 35, 60, 35)
+    canvas_ground.create_line(45, 40, 55, 40)
+    canvas_ground.create_line(48, 45, 52, 45)
+    canvas_ground.grid(row=3, column=2)
 
 #Draw Formula
     canvas_formula = Canvas(led_window, width=200, height=150)
@@ -173,6 +183,7 @@ def voltage_divider():
                                                         R1_lab.grid_remove(), R1_input.grid_remove(),
                                                         R2_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
+                                                        RUI_func.voltage_dividerR2_result.grid_remove(),
                                                         R1_calculate.grid(),
                                                         R2_lab.grid(), R2_input.grid(),
                                                         Vout_lab.grid(), Vout_input.grid(),
@@ -186,6 +197,7 @@ def voltage_divider():
                                                         R2_lab.grid_remove(), R2_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
+                                                        RUI_func.voltage_dividerR1_result.grid_remove(),
                                                         R2_calculate.grid(),
                                                         R1_lab.grid(), R1_input.grid(),
                                                         Vout_lab.grid(), Vout_input.grid(),

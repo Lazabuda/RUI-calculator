@@ -3,7 +3,7 @@ from tkinter import messagebox as mb
 #from Calc_interface import *
 import Calc_interface
 counter_vd = 11
-counter = 4
+counter = 5
 
 #------------------------------------FUNCTIONS------------------------------------------#
 
