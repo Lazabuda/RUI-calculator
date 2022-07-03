@@ -5,6 +5,10 @@ import Calc_interface
 counter_vd = 11
 counter = 5
 
+voltage_dividerR1_result = None
+voltage_dividerR2_result = None
+voltage_dividerVout_result = None
+
 #------------------------------------FUNCTIONS------------------------------------------#
 
         #-------------------LED RESISTOR CALCULATION-------------------#

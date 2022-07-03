@@ -1,6 +1,10 @@
 from tkinter import *
 from tkinter import messagebox as mb
 import RUI_func
+#from RUI_func import *
+
+
+
 
 #---------------------------------------------------------------------------------------#
 #--------------------------THE LED CALCULATOR THINGS------------------------------------#
@@ -113,9 +117,7 @@ def voltage_divider():
     global R2_input
     global Vout_input
     global counter_vd
-    global voltage_dividerR1_result
-    global voltage_dividerR2_result
-    global voltage_dividerVout_result
+
 
     voltage_divider_window = Tk()
     voltage_divider_window.geometry("800x600")
@@ -183,7 +185,8 @@ def voltage_divider():
                                                         R1_lab.grid_remove(), R1_input.grid_remove(),
                                                         R2_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
-                                                        RUI_func.voltage_dividerR2_result.grid_remove(),
+                                                        button_Show_R1,
+                                                        #RUI_func.voltage_dividerR2_result.grid_remove(),
                                                         R1_calculate.grid(),
                                                         R2_lab.grid(), R2_input.grid(),
                                                         Vout_lab.grid(), Vout_input.grid(),
@@ -192,12 +195,17 @@ def voltage_divider():
                                                         canvas_formulaVout.grid_remove()])
     Show_R1.grid(row=0, column=0)
 
+
+
+    Show_R1.grid(row=0, column=0)
+
     Show_R2 = Button(voltage_divider_window, text="R2 CALCULATOR", bg='blue', fg='white',
                                                         command=lambda: [
                                                         R2_lab.grid_remove(), R2_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         V_calculate.grid_remove(),
-                                                        RUI_func.voltage_dividerR1_result.grid_remove(),
+                                                        button_Show_R2,
+                                                        #RUI_func.voltage_dividerR1_result.grid_remove(),
                                                         R2_calculate.grid(),
                                                         R1_lab.grid(), R1_input.grid(),
                                                         Vout_lab.grid(), Vout_input.grid(),
@@ -211,6 +219,7 @@ def voltage_divider():
                                                         Vout_lab.grid_remove(), Vout_input.grid_remove(),
                                                         R1_calculate.grid_remove(),
                                                         R2_calculate.grid_remove(),
+                                                        button_Show_Vout,
                                                         V_calculate.grid(),
                                                         R1_lab.grid(), R1_input.grid(),
                                                         R2_lab.grid(), R2_input.grid(),
@@ -310,6 +319,41 @@ def voltage_divider():
     canvas_formulaVout.create_text(140, 80, fill="darkblue", font="Times 14 italic bold", text="R1 + R2")
     # canvas_formulaR1.grid(row=4, rowspan=5, column=4)
 
+def button_Show_R1():
+
+    if ((RUI_func.voltage_dividerR1_result) == True):
+        RUI_func.voltage_dividerR1_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
+    if ((RUI_func.voltage_dividerR2_result) == True):
+        RUI_func.voltage_dividerR2_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
+    if ((RUI_func.voltage_dividerVout_result) == True):
+        RUI_func.voltage_dividerVout_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+
+def button_Show_R2():
+
+    if ((RUI_func.voltage_dividerR1_result) == True):
+        RUI_func.voltage_dividerR1_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
+    if ((RUI_func.voltage_dividerR2_result) == True):
+        RUI_func.voltage_dividerR2_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
+    if ((RUI_func.voltage_dividerVout_result) == True):
+        RUI_func.voltage_dividerVout_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
+
+def button_Show_Vout():
+
+    if ((RUI_func.voltage_dividerR1_result) == True):
+        RUI_func.voltage_dividerR1_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
+    if ((RUI_func.voltage_dividerR2_result) == True):
+        RUI_func.voltage_dividerR2_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
+    if ((RUI_func.voltage_dividerVout_result) == True):
+        RUI_func.voltage_dividerVout_result.grid_remove()
+        mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
 
 #---------------------------------------------------------------------------------------#
 #------------------------------THE MAX CURRENT THROW WIRE CALCULATOR--------------------#
