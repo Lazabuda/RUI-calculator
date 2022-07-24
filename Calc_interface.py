@@ -375,7 +375,7 @@ def wire_calc():
     wire_input_label = Label(wire_window, text="mm")
     wire_input_label.grid(row=6, column=2, sticky="w")
 
-    D_calculate = Button(wire_window, text="Press to calculate max current through wire", command = RUI_func.wire_current)
+    D_calculate = Button(wire_window, text="Press to calculate max current through wire", command = RUI_func.wire_current_I)
     D_calculate.grid(row=8, column=0)
 
     var = IntVar()
