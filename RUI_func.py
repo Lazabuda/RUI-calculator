@@ -166,14 +166,23 @@ def voltage_divider_calc_Vout():
 
 def wire_current():
     global D_input
+    global MaxI
     try:
         float(Calc_interface.D_input.get()) or float(Calc_interface.S_input.get())
         pass
     except ValueError:
         mb.showerror("Error", "Enter digits, boy!")
+    S = (3.14*(D_input*D_input))/4
+    MaxI = 6 * S
 
-    D = float(Calc_interface.R1_input.get())
-    S = float(Calc_interface.R2_input.get())
+    MaxI_result = Label(Calc_interface.wire_window, text=str(int(MaxI)) + " Amperes",
+                                       fg='darkblue')
+    MaxI_result.grid(row=6, column=4, sticky="w")
+
+    if (counter_vd == 15):
+        counter_vd = 11
+    counter_vd = counter_vd + 1
+
 
 
 

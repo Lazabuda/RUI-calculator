@@ -323,41 +323,26 @@ def button_Show_R1():
 
     if (RUI_func.voltage_dividerR1_result):
         RUI_func.voltage_dividerR1_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
     if (RUI_func.voltage_dividerR2_result):
         RUI_func.voltage_dividerR2_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
     if (RUI_func.voltage_dividerVout_result):
         RUI_func.voltage_dividerVout_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
-    #else:
-        #mb.showerror("KAKAYA-TO HUINYA")
 
 def button_Show_R2():
     if (RUI_func.voltage_dividerR1_result):
         RUI_func.voltage_dividerR1_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
     if (RUI_func.voltage_dividerR2_result):
         RUI_func.voltage_dividerR2_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
     if (RUI_func.voltage_dividerVout_result):
         RUI_func.voltage_dividerVout_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
-    #else:
-        #mb.showerror("KAKAYA-TO HUINYA")
 
 def button_Show_Vout():
     if (RUI_func.voltage_dividerR1_result):
         RUI_func.voltage_dividerR1_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerR1_result.grid_remove()")
     if (RUI_func.voltage_dividerR2_result):
         RUI_func.voltage_dividerR2_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerR2_result.grid_remove()")
     if (RUI_func.voltage_dividerVout_result):
         RUI_func.voltage_dividerVout_result.grid_remove()
-        #mb.showerror("RUI_func.voltage_dividerVout_result.grid_remove()")
-    #else:
-        #mb.showerror("KAKAYA-TO HUINYA")
 
 #---------------------------------------------------------------------------------------#
 #------------------------------THE MAX CURRENT THROW WIRE CALCULATOR--------------------#
@@ -366,27 +351,45 @@ def button_Show_Vout():
 def wire_calc():
     global wire_window
     global D_input
+    global wire_input_label
 
     wire_window = Tk()
     wire_window.geometry("600x600")
     wire_window.title("Max currunt throw wire calculator")
 
-    canvas_wire = Canvas(wire_window, width=500, height=500)
-    #canvas_wire.create_arc(250,250,350,150)
-    canvas_wire.create_line(400, 250, 400, 150)
-    canvas_wire.create_line(300, 250, 400, 250)
-    canvas_wire.create_line(300, 150, 400, 150)
-    canvas_wire.create_line(400, 150, 410, 170)
-    canvas_wire.create_line(400, 150, 390, 170)
-    canvas_wire.create_line(400, 250, 410, 230)
-    canvas_wire.create_line(400, 250, 390, 230)
-    canvas_wire.create_oval(250, 250, 350, 150)
-    canvas_wire.create_text(420, 200, fill="black", font="Times 12 italic bold", text="D = ")
-    canvas_wire.grid(row=2, column=2)
+    canvas_wire = Canvas(wire_window, width=250, height=300)
+    canvas_wire.create_line(200, 150, 200, 50)
+    canvas_wire.create_line(100, 150, 200, 150)
+    canvas_wire.create_line(100, 50, 200, 50)
+    canvas_wire.create_line(200, 50, 210, 70)
+    canvas_wire.create_line(200, 50, 190, 70)
+    canvas_wire.create_line(200, 150, 210, 130)
+    canvas_wire.create_line(200, 150, 190, 130)
+    canvas_wire.create_oval(50, 150, 150, 50)
+    canvas_wire.create_text(220, 100, fill="black", font="Times 12 italic bold", text="D = ")
+    canvas_wire.grid(row=3, rowspan = 8, column=0)
 
     D_input = Entry(wire_window, width=5)
-    D_input.grid(row=2, column=3, sticky="w")
+    D_input.grid(row=6, column=1, sticky="w")
 
-    D_calculate = Button(wire_window, text="Press to calculate max current through wire", command=wire_d)
-    D_calculate.grid(row=3, column=1)
+    wire_input_label = Label(wire_window, text="mm")
+    wire_input_label.grid(row=6, column=2, sticky="w")
 
+    D_calculate = Button(wire_window, text="Press to calculate max current through wire", command = RUI_func.wire_current)
+    D_calculate.grid(row=8, column=0)
+
+    var = IntVar()
+    var.set(0)
+    alum = Radiobutton(wire_window, text="Aluminium", variable=var, value=0)
+    copper = Radiobutton(wire_window, text="Copper", variable=var, value=1)
+    alum.grid(row=9, column=0, sticky="w")
+    copper.grid(row=10, column=0, sticky="w")
+
+    Show_diameter = Button(wire_window, text="Min diameter", bg='blue', fg='white')
+    Show_diameter.grid(row=0, column=0, sticky="w")
+
+    Show_current = Button(wire_window, text="Max current", bg='blue', fg='white')
+    Show_current.grid(row=1, column=0, sticky="w")
+
+    Show_voltage_drop = Button(wire_window, text="Voltage drop", bg='blue', fg='white')
+    Show_voltage_drop.grid(row=2, column=0, sticky="w")
