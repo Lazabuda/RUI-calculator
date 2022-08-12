@@ -190,10 +190,54 @@ def wire_current_I():
     counter_vd = counter_vd + 1
 
 def wire_current_D():
-    global I_input
-    global D_result
+    global D_input
+    global MaxI_result
     global counter_vd
 
+    try:
+        float(Calc_interface.D_input.get()) or float(Calc_interface.S_input.get())
+        pass
+    except ValueError:
+        mb.showerror("Error", "Enter digits, boy!")
+    D = float(Calc_interface.D_input.get())
+    S = (3.14*(D*D))/4
+    MaxI = 6 * S
+
+    MaxI_result = Label(Calc_interface.wire_window, text= " I = " + str(int(MaxI)) + " Amperes",
+                                       fg='darkblue')
+    MaxI_result.grid(row=6, column=3, sticky="w")
+
+    MaxI_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D)) + " mm diameter wire is " + str(int(MaxI)) + " Amperes", fg='darkblue')
+    MaxI_result_string.grid(row=counter_vd, column=0, columnspan=3)
+
+    if (counter_vd == 15):
+        counter_vd = 11
+    counter_vd = counter_vd + 1
+
+def wire_current_V():
+    global D_input
+    global MaxI_result
+    global counter_vd
+
+    try:
+        float(Calc_interface.D_input.get()) or float(Calc_interface.S_input.get())
+        pass
+    except ValueError:
+        mb.showerror("Error", "Enter digits, boy!")
+    D = float(Calc_interface.D_input.get())
+    S = (3.14*(D*D))/4
+    MaxI = 6 * S
+
+    MaxI_result = Label(Calc_interface.wire_window, text= " I = " + str(int(MaxI)) + " Amperes",
+                                       fg='darkblue')
+    MaxI_result.grid(row=6, column=3, sticky="w")
+
+    MaxI_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D)) + " mm diameter wire is " + str(int(MaxI)) + " Amperes", fg='darkblue')
+    MaxI_result_string.grid(row=counter_vd, column=0, columnspan=3)
+
+    if (counter_vd == 15):
+        counter_vd = 11
+    counter_vd = counter_vd + 1
 
 
 def infojokes():
