@@ -8,7 +8,7 @@ import Calc_interface
 #-----------------------------------MAIN WINDOW-----------------------------------------#
 #---------------------------------------------------------------------------------------#
 root = Tk()
-root.geometry("600x600")
+root.geometry("200x200")
 root.title("Some calculators for hardware boys and girls")
 
 #Define main menu buttons

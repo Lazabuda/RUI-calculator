@@ -70,7 +70,8 @@ def voltage_divider_calc_R1():
     R1 = ((Vin - Vout)*R2)/Vout
     R1_result = R1
 
-    voltage_dividerR1_result_lab = Label(Calc_interface.voltage_divider_window, text="Take value of R1 about " + str(int(R1_result)) + " Ohm",fg='darkblue')
+    voltage_dividerR1_result_lab = Label(Calc_interface.voltage_divider_window, text="Take value of R1 about "
+                                                                                     + str(int(R1_result)) + " Ohm",fg='darkblue')
     voltage_dividerR1_result_lab.grid(row=counter_vd, column=2, columnspan=2)
     voltage_dividerR1_discr_label = Label(Calc_interface.voltage_divider_window, text="Vin = " + str(Vin) + "V" + " | Vout = "
                                                   + str(Vout) + "V" + " | R2 = " + str(R2) + "Ohm")
@@ -170,70 +171,66 @@ def wire_current_I():
     global counter_vd
 
     try:
-        float(Calc_interface.D_input.get()) or float(Calc_interface.S_input.get())
+        float(Calc_interface.D_input.get())
         pass
     except ValueError:
         mb.showerror("Error", "Enter digits, boy!")
     D = float(Calc_interface.D_input.get())
     S = (3.14*(D*D))/4
-    MaxI = 6 * S
+    MaxI_result = 6 * S
 
-    MaxI_result = Label(Calc_interface.wire_window, text= " I = " + str(int(MaxI)) + " Amperes",
-                                       fg='darkblue')
-    MaxI_result.grid(row=6, column=3, sticky="w")
+    #Add COPPER/ALUMINIUM characteristics
 
-    MaxI_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D)) + " mm diameter wire is " + str(int(MaxI)) + " Amperes", fg='darkblue')
-    MaxI_result_string.grid(row=counter_vd, column=0, columnspan=3)
+    MaxI_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D))
+                                                                + " mm diameter wire is " + str(int(MaxI_result))
+                                                                + " Amperes", fg='darkblue')
+    MaxI_result_string.grid(row=counter_vd, column=1)
 
     if (counter_vd == 15):
         counter_vd = 11
     counter_vd = counter_vd + 1
 
 def wire_current_D():
-    global D_input
-    global MaxI_result
+    global I_input
+    global MaxD_result
     global counter_vd
 
     try:
-        float(Calc_interface.D_input.get()) or float(Calc_interface.S_input.get())
+        float(Calc_interface.I_input.get())
         pass
     except ValueError:
         mb.showerror("Error", "Enter digits, boy!")
-    D = float(Calc_interface.D_input.get())
-    S = (3.14*(D*D))/4
-    MaxI = 6 * S
+    I = float(Calc_interface.I_input.get())
+    MaxD_result = Calc_interface.I_input.get()
 
-    MaxI_result = Label(Calc_interface.wire_window, text= " I = " + str(int(MaxI)) + " Amperes",
-                                       fg='darkblue')
-    MaxI_result.grid(row=6, column=3, sticky="w")
-
-    MaxI_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D)) + " mm diameter wire is " + str(int(MaxI)) + " Amperes", fg='darkblue')
-    MaxI_result_string.grid(row=counter_vd, column=0, columnspan=3)
+    MaxD_result_string = Label(Calc_interface.wire_window, text="Max diameter of wire for current of"
+                                                                + str(int(I)) + " Amperes is "
+                                                                + str(int(MaxD_result)) + " mm", fg='darkblue')
+    MaxD_result_string.grid(row=counter_vd, column=0, columnspan=3)
 
     if (counter_vd == 15):
         counter_vd = 11
     counter_vd = counter_vd + 1
 
 def wire_current_V():
-    global D_input
-    global MaxI_result
+    global D_Voltage_drop_input
+    global l_Voltage_drop_input
+    global MaxV_result
     global counter_vd
 
     try:
-        float(Calc_interface.D_input.get()) or float(Calc_interface.S_input.get())
+        float(Calc_interface.D_Voltage_drop_input.get()) or float(Calc_interface.l_Voltage_drop_input.get())
         pass
     except ValueError:
         mb.showerror("Error", "Enter digits, boy!")
-    D = float(Calc_interface.D_input.get())
-    S = (3.14*(D*D))/4
-    MaxI = 6 * S
+    D = float(Calc_interface.D_Voltage_drop_input.get())
+    l = float(Calc_interface.l_Voltage_drop_input.get())
+    MaxV_result = D*l
 
-    MaxI_result = Label(Calc_interface.wire_window, text= " I = " + str(int(MaxI)) + " Amperes",
-                                       fg='darkblue')
-    MaxI_result.grid(row=6, column=3, sticky="w")
-
-    MaxI_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D)) + " mm diameter wire is " + str(int(MaxI)) + " Amperes", fg='darkblue')
-    MaxI_result_string.grid(row=counter_vd, column=0, columnspan=3)
+    MaxV_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D))
+                                                                + " mm diameter wire is " + str(int(MaxV_result))
+                                                                + " Amperes", fg='darkblue')
+    MaxV_result_string.grid(row=counter_vd, column=0, columnspan=3)
 
     if (counter_vd == 15):
         counter_vd = 11

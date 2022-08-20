@@ -338,13 +338,18 @@ def button_Show_Vout():
 def wire_calc():
     global wire_window
     global D_input
+    global I_input
+    global D_Voltage_drop_input
+    global l_Voltage_drop_input
     global wire_input_label
 
     wire_window = Tk()
     wire_window.geometry("600x600")
     wire_window.title("Max currunt throw wire calculator")
 
-    canvas_wire = Canvas(wire_window, width=250, height=300)
+#------------------------------THE SHOW CURRENT BUTTON COMPONENTS------------------------#
+
+    canvas_wire = Canvas(wire_window, width=350, height=150)
     canvas_wire.create_line(200, 150, 200, 50)
     canvas_wire.create_line(100, 150, 200, 150)
     canvas_wire.create_line(100, 50, 200, 50)
@@ -355,9 +360,15 @@ def wire_calc():
     canvas_wire.create_oval(50, 150, 150, 50)
     canvas_wire.create_text(220, 100, fill="black", font="Times 12 italic bold", text="D = ")
     canvas_wire.create_text(100, 70, fill="black", font="Times 12 italic bold", text="COPPER")
-    #canvas_wire.grid(row=3, rowspan = 8, column=0)
+    canvas_wire.create_text(270, 100, fill="black", font="Times 12 italic bold", text="mm")
+    canvas_wire.grid(row=6, column=1)
 
-    canvas_wire_current = Canvas(wire_window, width=500, height=300)
+    D_input = Entry(wire_window, width=5)
+    D_input_window = canvas_wire.create_window(240, 100, window=D_input)
+
+#------------------------------THE SHOW DIAMETER BUTTON COMPONENTS------------------------#
+
+    canvas_wire_current = Canvas(wire_window, width=350, height=150)
     canvas_wire_current.create_line(40, 50, 300, 50)
     canvas_wire_current.create_line(40, 100, 300, 100)
     canvas_wire_current.create_arc(30, 50, 55, 100, start=90, extent=180, style=ARC)
@@ -368,52 +379,114 @@ def wire_calc():
     canvas_wire_current.create_line(210, 90, 200, 95)
     canvas_wire_current.create_text(130, 70, text="I =", fill="black", font=('Times 15'))
     canvas_wire_current.create_text(220, 70, text="Amperes", fill="black", font=('Times 15'))
-    canvas_wire_current.grid(row=3, rowspan=8, column=0)
+    canvas_wire_current.grid(row=6, column=1)
 
     I_input = Entry(wire_window, width=5)
 
     I_input_window = canvas_wire_current.create_window(160, 70, window=I_input)
 
-    D_input = Entry(wire_window, width=5)
-    D_input.grid(row=6, column=1, sticky="w")
+#---------------------------------THE VOLTAGE DROP BUTTON COMPONENTS------------------------#
 
-    D_input = Entry(wire_window, width=5)
-    D_input.grid(row=6, column=1, sticky="w")
+    canvas_voltage_drop = Canvas(wire_window, width=350, height=150)
+    canvas_voltage_drop.create_line(40, 50, 300, 50)
+    canvas_voltage_drop.create_line(40, 100, 300, 100)
+    canvas_voltage_drop.create_arc(30, 50, 55, 100, start=90, extent=180, style=ARC)
+    canvas_voltage_drop.create_arc(30, 50, 55, 100, start=270, extent=180, style=ARC)
+    canvas_voltage_drop.create_arc(285, 50, 310, 100, start=270, extent=180, style=ARC)
+    canvas_voltage_drop.create_line(100, 50, 100, 100)
+    canvas_voltage_drop.create_line(100, 50, 95, 55)
+    canvas_voltage_drop.create_line(100, 50, 105, 55)
+    canvas_voltage_drop.create_line(100, 100, 105, 95)
+    canvas_voltage_drop.create_line(100, 100, 95, 95)
+    canvas_voltage_drop.create_line(40, 30, 300, 30)
+    canvas_voltage_drop.create_line(40, 30, 45, 25)
+    canvas_voltage_drop.create_line(40, 30, 45, 35)
+    canvas_voltage_drop.create_line(300, 30, 295, 25)
+    canvas_voltage_drop.create_line(300, 30, 295, 35)
+    canvas_voltage_drop.create_text(130, 20, text="l =", fill="black", font=('Times 15'))
+    canvas_voltage_drop.create_text(210, 20, text="mm", fill="black", font=('Times 15'))
+    canvas_voltage_drop.create_text(130, 80, text="D =", fill="black", font=('Times 15'))
+    canvas_voltage_drop.create_text(210, 80, text="mm", fill="black", font=('Times 15'))
+    canvas_voltage_drop.grid(row=6, column=1)
 
-    wire_input_label = Label(wire_window, text="mm")
-    wire_input_label.grid(row=6, column=2, sticky="w")
+    l_Voltage_drop_input = Entry(wire_window, width=5)
+    D_Voltage_drop_input = Entry(wire_window, width=5)
+
+    l_input_window = canvas_voltage_drop.create_window(165, 20, window=l_Voltage_drop_input)
+    d_input_window = canvas_voltage_drop.create_window(165, 80, window=D_Voltage_drop_input)
+
+
 
     var = IntVar()
     var.set(0)
-    alum = Radiobutton(wire_window, text="Aluminium", variable=var, value=0)
+    #alum = Radiobutton(wire_window, text="Aluminium", variable=var, value=0)
     copper = Radiobutton(wire_window, text="Copper", variable=var, value=1)
-    alum.grid(row=9, column=0, sticky="w")
-    copper.grid(row=10, column=0, sticky="w")
+    #alum.grid(row=4, column=0, sticky="w")
+    copper.grid(row=5, column=0, sticky="w")
 
 
 
-    #BUTTONS TO CALCULATE
+#-----------------------------------------------BUTTONS TO CALCULATE---------------------------------------
 
     I_calculate = Button(wire_window, text="Press to calculate max current through wire", command = RUI_func.wire_current_I)
-    #I_calculate.grid(row=8, column=0)
+    I_calculate.grid(row=7, column=1)
 
     D_calculate = Button(wire_window, text="Press to calculate max diameter of the wire", command = RUI_func.wire_current_D)
-    #D_calculate.grid(row=8, column=0)
+    D_calculate.grid(row=7, column=1)
 
     V_calculate = Button(wire_window, text="Press to calculate voltage drop", command = RUI_func.wire_current_V)
-    #I_calculate.grid(row=8, column=0)
+    V_calculate.grid(row=7, column=1)
 
     #BUTTONS TO CHOOSE THE CALCULATOR
 
-    Show_current = Button(wire_window, text="Max current", bg='blue', fg='white')
+    Show_current = Button(wire_window, text="Max current", bg='blue', fg='white', command=lambda: [
+                                                                                    canvas_wire.grid_remove(),
+                                                                                    canvas_wire.grid(),
+                                                                                    canvas_wire_current.grid_remove(),
+                                                                                    canvas_voltage_drop.grid_remove(),
+                                                                                    D_calculate.grid_remove(), I_calculate.grid(),
+                                                                                    V_calculate.grid_remove()])
     Show_current.grid(row=1, column=0, sticky="w")
 
-    Show_voltage_drop = Button(wire_window, text="Voltage drop", bg='blue', fg='white')
+    Show_voltage_drop = Button(wire_window, text="Voltage drop", bg='blue', fg='white', command=lambda: [
+                                                                                    canvas_wire.grid_remove(),
+                                                                                    canvas_wire_current.grid_remove(),
+                                                                                    canvas_voltage_drop.grid(),
+                                                                                    D_calculate.grid_remove(), I_calculate.grid_remove(),
+                                                                                    V_calculate.grid()])
     Show_voltage_drop.grid(row=2, column=0, sticky="w")
 
-    Show_diameter = Button(wire_window, text="Min. diameter", bg='blue', fg='white',
-                           command=lambda: [
-
-                           ])
+    Show_diameter = Button(wire_window, text="Min. diameter", bg='blue', fg='white', command=lambda: [
+                                                                                    button_show_diameter(),
+                                                                                    canvas_wire_current.grid(),
+                                                                                    canvas_wire.grid_remove(),
+                                                                                    canvas_voltage_drop.grid_remove(),
+                                                                                    D_calculate.grid(), I_calculate.grid_remove(),
+                                                                                    V_calculate.grid_remove()])
 
     Show_diameter.grid(row=0, column=0, sticky="w")
+
+
+def button_show_current():
+    if (canvas_wire):
+        canvas_wire.grid_remove()
+    if (canvas_wire_current):
+        canvas_wire_current.grid_remove()
+    if (RUI_func.voltage_dividerVout_result):
+        RUI_func.voltage_dividerVout_result.grid_remove()
+
+def button_show_voltage_drop():
+    if (RUI_func.voltage_dividerR1_result):
+        RUI_func.voltage_dividerR1_result.grid_remove()
+    if (RUI_func.voltage_dividerR2_result):
+        RUI_func.voltage_dividerR2_result.grid_remove()
+    if (RUI_func.voltage_dividerVout_result):
+        RUI_func.voltage_dividerVout_result.grid_remove()
+
+def button_show_diameter():
+    if (RUI_func.voltage_dividerR1_result):
+        RUI_func.voltage_dividerR1_result.grid_remove()
+    if (RUI_func.voltage_dividerR2_result):
+        RUI_func.voltage_dividerR2_result.grid_remove()
+    if (RUI_func.voltage_dividerVout_result):
+        RUI_func.voltage_dividerVout_result.grid_remove()
