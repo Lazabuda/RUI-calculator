@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox as mb
 #from Calc_interface import *
 import Calc_interface
+import math
 counter_vd = 11
 counter = 5
 
@@ -192,20 +193,28 @@ def wire_current_I():
 
 def wire_current_D():
     global I_input
+    global l_input
+    global V_input
     global MaxD_result
+    global MaxS_result
     global counter_vd
 
     try:
         float(Calc_interface.I_input.get())
+        float(Calc_interface.l_input.get())
         pass
     except ValueError:
         mb.showerror("Error", "Enter digits, boy!")
     I = float(Calc_interface.I_input.get())
-    MaxD_result = Calc_interface.I_input.get()
+    l = float(Calc_interface.l_input.get())
+    MaxD_result = 2 * (math.sqrt(0.0172 * (l/((0.6/(I))*3.14))))
+    MaxS_result = (3.14 * (MaxD_result * MaxD_result))/4
 
-    MaxD_result_string = Label(Calc_interface.wire_window, text="Max diameter of wire for current of"
-                                                                + str(int(I)) + " Amperes is "
-                                                                + str(int(MaxD_result)) + " mm", fg='darkblue')
+    MaxD_result_string = Label(Calc_interface.wire_window, text="Min diameter of wire for current of "
+                                                                + str(float(I)) + " Amperes is "
+                                                                + str(float(round((MaxD_result), 2))) + " mm "
+                                                                + "   Max S = " + str(float(round((MaxS_result), 3)))
+                                                                + " mm^2", fg='darkblue')
     MaxD_result_string.grid(row=counter_vd, column=0, columnspan=3)
 
     if (counter_vd == 15):
@@ -217,7 +226,7 @@ def wire_current_V():
     global l_Voltage_drop_input
     global MaxV_result
     global counter_vd
-
+    #TO ADD COPPER/ALUMINIUM etc.
     try:
         float(Calc_interface.D_Voltage_drop_input.get()) or float(Calc_interface.l_Voltage_drop_input.get())
         pass
@@ -227,9 +236,9 @@ def wire_current_V():
     l = float(Calc_interface.l_Voltage_drop_input.get())
     MaxV_result = D*l
 
-    MaxV_result_string = Label(Calc_interface.wire_window, text="Max current of " + str(int(D))
-                                                                + " mm diameter wire is " + str(int(MaxV_result))
-                                                                + " Amperes", fg='darkblue')
+    MaxV_result_string = Label(Calc_interface.wire_window, text="Approximate Voltage drop of " + str(int(l)) + " mm wire length with "
+                                                                + str(int(D)) + " mm diameter is " + str(int(MaxV_result))
+                                                                + " Volts", fg='darkblue')
     MaxV_result_string.grid(row=counter_vd, column=0, columnspan=3)
 
     if (counter_vd == 15):
